@@ -1,62 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Supu Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Supu 🎀</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff758f;
+            --accent: #ffb3c1;
+            --bg-dark: #0f0109;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#ffd6e7,#d6ecff);
-min-height:100vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-color:#333;
-overflow-x:hidden;
-}
+        body {
+            height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #3d001d 0%, #0f0109 100%);
+        }
 
-.header{
-margin-top:40px;
-text-align:center;
-}
-.header h1{
-font-family:'Pacifico',cursive;
-font-size:48px;
-color:#ff4f81;
-}
-.header p{
-margin-top:8px;
-opacity:.7;
-}
+        /* Animated Sparkles */
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: twinkle var(--d) linear infinite;
+        }
 
-.card{
-margin-top:30px;
-background:#fff;
-padding:30px;
-border-radius:25px;
-max-width:500px;
-box-shadow:0 15px 40px rgba(0,0,0,0.1);
-position:relative;
-}
+        @keyframes twinkle {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+        }
 
-.sticker{
-position:absolute;
-width:90px;
-}
-.sticker.top{top:-35px;left:-35px}
-.sticker.bottom{bottom:-35px;right:-35px}
+        .floating-heart {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1;
+            filter: drop-shadow(0 0 5px rgba(255,77,109,0.5));
+            animation: floatUp var(--duration) linear forwards;
+        }
 
-.card h2{
-font-size:24px;
-margin-bottom:15px;
-color:#ff4f81;
-}
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-20vh) translateX(var(--drift)) rotate(360deg); opacity: 0; }
+        }
 
-.card p{
-line-height:1.6;
-font-size:
+        /* Responsive Container */
+        .container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 450px;
+            max-width: 90%;
+            padding: 30px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 
+                        inset 0 0 20px rgba(255,77,109,0.05);
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .container.active { display: flex; animation: slideUp 0.6s ease-out; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Responsive Buttons */
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, var(--primary), #ff85a1);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(255,77,109,0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,77,109,0.4);
+        }
+
+        /* Letter Styling */
+        .letter-box {
+            background: #fff;
+            padding: 20px;
+            width: 100%;
+            min-height: 220px;
+            border-radius: 15px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: left;
+            color: #2d0015;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            border: 1px solid #ffe5ec;
+            overflow-y: auto;
+        }
+
+        .typing-cursor::after {
+            content: "|";
+            animation: blink 0.8s infinite;
+            color: var(--primary);
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Media Frame */
+        .gif-frame {
+            width: 100%;
+            max-height: 200px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .gif-frame img { 
+            display: block; 
+            width: 100%; 
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .segment {
+            width: 20px;
+            height: 5px;
+            border-radius: 10px;
+            background: #ffe5ec;
+        }
+
+        .segment.filled {
+            background: var(--primary);
+            box-shadow: 0 0 8px rgba(255,77,109,0.3);
+        }
+
+        .proposal-btns {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        #noBtn { 
+            background: #eee; 
+            color: #888; 
+            box-shadow: none;
+            transition: none; /* Instant move for no button */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 15px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Tablet/Desktop tweaks */
+        @media (min-width: 768px) {
+            h1 { font-size: 2.6rem; }
+            p { font-size: 1.1rem; }
+            .btn { font-size: 1rem; padding: 15px 40px; }
+            .letter-box { font-size: 1.9rem; min-height: 280px; }
+            .gif-frame { max-height: 250px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="stars"></div>
+
+    <!-- Screen 1: Intro -->
+    <div class="container active" id="intro">
+        <div class="gif-frame">
+            <!-- New GIF 1 -->
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXFsZWYwM3lwOXByODRweTN5ZDRocmZsdDhhMWowbWl1MWxxZHBxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Cute Intro">
+        </div>
+        <h1>Sunn na, Supu! 😌</h1>
+        <p>Seedha point pe aana boring hai... <br>Isliye tere liye ek chota sa self-appreciation tour banaya hai. <br><span class="highlight">Skip mat karna haan!</span></p>
+        <button class="btn" onclick="nextScreen('tease1')">Let's Go Baby ✨</button>
+    </div>
+
+    <!-- Screen 2: Cookies -->
+    <div class="container" id="tease1">
+        <div class="status-bar"><div class="segment filled"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div></div>
+        <div class="gif-frame">
+            <!-- New GIF 2 -->
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTY4MWRzZnIxMnZ1Z3VlNnZ2NmhsNnh5d3BiYWNsbHNreng1aXdjOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yc2pHdAoxVOrJ2m5Ha/giphy.gif" alt="Cute Tease">
+        </div>
+        <h1>Cookie Monster? 🍪</h1>
+        <p>Ghar pe sab kehte hain ki tere haath ki cookies best hain... par unhe kya pata mera asli motive toh un <span class="highlight">cookies ke bahaane tujhse milna hota hai!</span> 😌</p>
+        <button class="btn" onclick="nextScreen('tease2')">Next →</button>
+    </div>
+
+    <!-- Screen 3: Kalesh -->
+    <div class="container" id="tease2">
+        <div class="status-bar"><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div><div class="segment"></div></div>
+        <div class="gif-frame">
+            <!-- New GIF 3 -->
+            <img src="https://c.tenor.com/7S-oat-3j_YAAAAC/tenor.gif" alt="Angry Cute">
+        </div>
+        <h1>Top Tier Kaleshi 😤</h1>
+        <p>Maana ki tu thoda kalesh karti hai, but honestly? Tera <span class="highlight">cute wala gussa</span> handle karna is my favorite hobby. <br>Bina kalesh ke maza hi nahi aata!</p>
+        <button class="btn" onclick="nextScreen('tease3')">Hehe, Next!</button>
+    </div>
+
+    <!-- Screen 4: Food -->
+    <div class="container" id="tease3">
+        <div class="status-bar"><div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div></div>
+        <div class="gif-frame">
+            <!-- New GIF 4 -->
+            <img src="https://c.tenor.com/2X88v5zK19QAAAAC/tenor.gif" alt="Foodie">
+        </div>
+        <h1>Khana & Sukoon 🍕</h1>
+        <p>Tujhe khana khaate huye dekh ke jo sukoon milta hai na, woh kisi meditation se kam nahi hai. <span class="highlight">Bas ek request hai...</span> meri plate se fries kam chori kiya kar!</p>
+        <button class="btn" onclick="nextScreen('letter')">One Last Thing... 💌</button>
+    </div>
+
+    <!-- Screen 5: Letter -->
+    <div class="container" id="letter">
+        <h1>Bas tere liye...</h1>
+        <div class="letter-box">
+            <span id="typeContent"></span><span class="typing-cursor"></span>
+        </div>
+        <button class="btn" id="letterNext" style="display:none;" onclick="nextScreen('proposal')">Bataun? 💍</button>
+    </div>
+
+    <!-- Screen 6: Proposal -->
+    <div class="container" id="proposal">
+        <div class="gif-frame">
+            <!-- New GIF 5 -->
+            <img src="https://c.tenor.com/n1v6Uu-S03wAAAAC/tenor.gif" alt="Proposal">
+        </div>
+        <h1>The Big Question!</h1>
+        <p>I promise... limited kalesh, unlimited cookies, and <span class="highlight">zero boring moments</span> with you. <br><br>Will you be my Valentine, Supu?</p>
+        <div class="proposal-btns">
+            <button class="btn" id="yesBtn" onclick="celebrate()">Haan Ji! ❤️</button>
+            <button class="btn" id="noBtn" onmouseover="dodge()" onclick="dodge()">Nahi 😒</button>
+        </div>
+    </div>
+
+    <!-- Screen 7: Success -->
+    <div class="container" id="success">
+        <h1>Hehe, Fixed Tha! 😌❤️</h1>
+        <div class="gif-frame">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Yyb2p0Z3Eyd2R5Z3QyeXN5eXN5eXN5eXN5eXN5eXN5eXN5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="Success Cat">
+        </div>
+        <p>You just signed a contract for lifetime pampering and unlimited food dates. <br><span class="highlight">No refunds allowed!</span> ✨</p>
+        <p style="font-size: 0.8rem; font-style: italic; margin-top: 10px;">I love our little chaos. See you soon!</p>
+    </div>
+
+    <div class="footer">STAY CUTE, STAY KALESHI | ANSHUL</div>
+
+    <script>
+        // Background Magic
+        function initBackground() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('div');
+                star.className = 'sparkle';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.setProperty('--d', `${Math.random() * 4 + 2}s`);
+                container.appendChild(star);
+            }
+        }
+        initBackground();
+
+        function spawnHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = ['❤️', '💖', '🍪', '✨', '🎀', '🌸'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 90 + 'vw';
+            heart.style.setProperty('--duration', (Math.random() * 2 + 3) + 's');
+            heart.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(spawnHeart, 450);
+
+        function nextScreen(id) {
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+            const next = document.getElementById(id);
+            next.classList.add('active');
+            if(id === 'letter') startTyping();
+        }
+
+        const letterText = `Oye Supu,\n\nSach bolu toh tu thodi pagal hai, par meri favorite wali.\n\nTere saath kalesh karne me jo maza aata hai na, woh duniya ke kisi sukoon me nahi hai.\n\nTu jaisi hai, bilkul perfect hai. (Except your fry-stealing habits).\n\nBas aise hi mere saath rehna, hamesha.\n\n- Tera Anshul`;
+
+        function startTyping() {
+            const el = document.getElementById('typeContent');
+            if (el.dataset.typed === "true") return;
+            el.innerHTML = '';
+            let i = 0;
+            function type() {
+                if (i < letterText.length) {
+                    const char = letterText.charAt(i);
+                    el.innerHTML += char === '\n' ? '<br>' : char;
+                    i++;
+                    setTimeout(type, 50);
+                } else {
+                    document.getElementById('letterNext').style.display = 'block';
+                    el.dataset.typed = "true";
+                }
+            }
+            type();
+        }
+
+        function dodge() {
+            const btn = document.getElementById('noBtn');
+            const container = btn.closest('.container');
+            const rect = container.getBoundingClientRect();
+            
+            // Constrain movement within the viewport but near the container
+            const padding = 20;
+            const maxX = window.innerWidth - btn.offsetWidth - padding;
+            const maxY = window.innerHeight - btn.offsetHeight - padding;
+            
+            const newX = Math.max(padding, Math.random() * maxX);
+            const newY = Math.max(padding, Math.random() * maxY);
+            
+            btn.style.position = 'fixed';
+            btn.style.left = newX + 'px';
+            btn.style.top = newY + 'px';
+            btn.style.zIndex = '1000';
+            
+            // Make "Yes" grow
+            const yesBtn = document.getElementById('yesBtn');
+            const scale = parseFloat(yesBtn.style.transform.replace('scale(', '')) || 1;
+            yesBtn.style.transform = `scale(${Math.min(scale + 0.1, 2)})`;
+        }
+
+        function celebrate() {
+            nextScreen('success');
+            for(let i=0; i<50; i++) {
+                setTimeout(spawnHeart, i * 40);
+            }
+        }
+    </script>
+</body>
+</html>
