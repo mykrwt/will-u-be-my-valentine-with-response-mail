@@ -130,15 +130,15 @@
             background: #fff;
             padding: 20px;
             width: 100%;
-            min-height: 220px;
+            min-height: 250px;
             border-radius: 15px;
             box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
             text-align: left;
             color: #2d0015;
-            margin-bottom: 20px;
-            line-height: 1.3;
+            margin-bottom: 15px;
+            line-height: 1.4;
             border: 1px solid #ffe5ec;
             overflow-y: auto;
         }
@@ -200,7 +200,7 @@
             background: #eee; 
             color: #888; 
             box-shadow: none;
-            transition: none; /* Instant move for no button */
+            transition: none;
         }
 
         .footer {
@@ -218,7 +218,7 @@
             h1 { font-size: 2.6rem; }
             p { font-size: 1.1rem; }
             .btn { font-size: 1rem; padding: 15px 40px; }
-            .letter-box { font-size: 1.9rem; min-height: 280px; }
+            .letter-box { font-size: 1.1rem; min-height: 280px; }
             .gif-frame { max-height: 250px; }
         }
     </style>
@@ -226,28 +226,30 @@
 
 <body>
 
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="stars"></div>
 
     <!-- Screen 1: Intro -->
     <div class="container active" id="intro">
         <div class="gif-frame">
-            <!-- New GIF 1 -->
             <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXFsZWYwM3lwOXByODRweTN5ZDRocmZsdDhhMWowbWl1MWxxZHBxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Cute Intro">
         </div>
-        <h1>Sunn na, Supu! 😌</h1>
-        <p>Seedha point pe aana boring hai... <br>Isliye tere liye ek chota sa self-appreciation tour banaya hai. <br><span class="highlight">Skip mat karna haan!</span></p>
-        <button class="btn" onclick="nextScreen('tease1')">Let's Go Baby ✨</button>
+        <h1>Suno ji, supuuu! 😌</h1>
+        <p>Sidha point pr aana possible n h toh mne tere liye ek gift bnaya h. <br><span class="highlight">Skip krne ki sochna mt!</span></p>
+        <button class="btn" onclick="startApp()">Chalo Dekhte Hain ✨</button>
     </div>
 
     <!-- Screen 2: Cookies -->
     <div class="container" id="tease1">
         <div class="status-bar"><div class="segment filled"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div></div>
         <div class="gif-frame">
-            <!-- New GIF 2 -->
             <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTY4MWRzZnIxMnZ1Z3VlNnZ2NmhsNnh5d3BiYWNsbHNreng1aXdjOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yc2pHdAoxVOrJ2m5Ha/giphy.gif" alt="Cute Tease">
         </div>
-        <h1>Cookie Monster? 🍪</h1>
-        <p>Ghar pe sab kehte hain ki tere haath ki cookies best hain... par unhe kya pata mera asli motive toh un <span class="highlight">cookies ke bahaane tujhse milna hota hai!</span> 😌</p>
+        <h1>Khass Cookies 🍪</h1>
+        <p>Yaad h tere hath ki cookies khane ke liye tere mumma teri chutti krate h... <span class="highlight">kuj toh khass hoga unme!</span> Mujhe v khani h kbhi, apne haatho se khilaogi?</p>
         <button class="btn" onclick="nextScreen('tease2')">Next →</button>
     </div>
 
@@ -255,11 +257,10 @@
     <div class="container" id="tease2">
         <div class="status-bar"><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div><div class="segment"></div></div>
         <div class="gif-frame">
-            <!-- New GIF 3 -->
             <img src="https://c.tenor.com/7S-oat-3j_YAAAAC/tenor.gif" alt="Angry Cute">
         </div>
-        <h1>Top Tier Kaleshi 😤</h1>
-        <p>Maana ki tu thoda kalesh karti hai, but honestly? Tera <span class="highlight">cute wala gussa</span> handle karna is my favorite hobby. <br>Bina kalesh ke maza hi nahi aata!</p>
+        <h1>Cute Gussa 😤</h1>
+        <p>Maana ki tu thoda kalesh karti hai, but honestly? <span class="highlight">Manta hun</span> tera gussa handle karna mera favorite kaam hai. Bina kalesh ke maza hi nahi aata!</p>
         <button class="btn" onclick="nextScreen('tease3')">Hehe, Next!</button>
     </div>
 
@@ -267,31 +268,32 @@
     <div class="container" id="tease3">
         <div class="status-bar"><div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div></div>
         <div class="gif-frame">
-            <!-- New GIF 4 -->
             <img src="https://c.tenor.com/2X88v5zK19QAAAAC/tenor.gif" alt="Foodie">
         </div>
-        <h1>Khana & Sukoon 🍕</h1>
-        <p>Tujhe khana khaate huye dekh ke jo sukoon milta hai na, woh kisi meditation se kam nahi hai. <span class="highlight">Bas ek request hai...</span> meri plate se fries kam chori kiya kar!</p>
-        <button class="btn" onclick="nextScreen('letter')">One Last Thing... 💌</button>
+        <h1>Health First 🍕</h1>
+        <p>Bas ek req h... <span class="highlight">khati piti rha kr!</span> Ptla hone pr dhyn mt dena, tu jaisi hai waisi hi best lagti hai. Khana hi sukoon hai!</p>
+        <button class="btn" onclick="nextScreen('letter')">Important Note... 💌</button>
     </div>
 
     <!-- Screen 5: Letter -->
     <div class="container" id="letter">
-        <h1>Bas tere liye...</h1>
+        <div class="gif-frame">
+            <img src="https://media.tenor.com/Fw59P9m9zY8AAAAC/dudu-cute-smile-photo.gif" alt="Cute Smile">
+        </div>
+        <h1>Mere Dil Se...</h1>
         <div class="letter-box">
             <span id="typeContent"></span><span class="typing-cursor"></span>
         </div>
-        <button class="btn" id="letterNext" style="display:none;" onclick="nextScreen('proposal')">Bataun? 💍</button>
+        <button class="btn" id="letterNext" style="display:none;" onclick="nextScreen('proposal')">Journey Start? 💍</button>
     </div>
 
     <!-- Screen 6: Proposal -->
     <div class="container" id="proposal">
         <div class="gif-frame">
-            <!-- New GIF 5 -->
             <img src="https://c.tenor.com/n1v6Uu-S03wAAAAC/tenor.gif" alt="Proposal">
         </div>
         <h1>The Big Question!</h1>
-        <p>I promise... limited kalesh, unlimited cookies, and <span class="highlight">zero boring moments</span> with you. <br><br>Will you be my Valentine, Supu?</p>
+        <p>I love u more then this world. <br>I promise to never hurt you again. <br><br><span class="highlight">Will you start this new journey with me, Supu?</span></p>
         <div class="proposal-btns">
             <button class="btn" id="yesBtn" onclick="celebrate()">Haan Ji! ❤️</button>
             <button class="btn" id="noBtn" onmouseover="dodge()" onclick="dodge()">Nahi 😒</button>
@@ -300,18 +302,18 @@
 
     <!-- Screen 7: Success -->
     <div class="container" id="success">
-        <h1>Hehe, Fixed Tha! 😌❤️</h1>
+        <h1>I Love Youuu! 😌❤️</h1>
         <div class="gif-frame">
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Yyb2p0Z3Eyd2R5Z3QyeXN5eXN5eXN5eXN5eXN5eXN5eXN5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="Success Cat">
         </div>
-        <p>You just signed a contract for lifetime pampering and unlimited food dates. <br><span class="highlight">No refunds allowed!</span> ✨</p>
-        <p style="font-size: 0.8rem; font-style: italic; margin-top: 10px;">I love our little chaos. See you soon!</p>
+        <p>Hamesha mere saath rehna. <br><span class="highlight">~ Swaroop Sran ~</span></p>
     </div>
 
-    <div class="footer">STAY CUTE, STAY KALESHI | ANSHUL</div>
+    <div class="footer">STAY CUTE, STAY KALESHI | SWAROOP SRAN</div>
 
     <script>
-        // Background Magic
+        const audio = document.getElementById('bgMusic');
+
         function initBackground() {
             const container = document.getElementById('stars');
             for (let i = 0; i < 40; i++) {
@@ -327,6 +329,12 @@
             }
         }
         initBackground();
+
+        function startApp() {
+            // Unmute/Play audio on first user interaction (standard mobile policy)
+            audio.play().catch(e => console.log("Audio play failed:", e));
+            nextScreen('tease1');
+        }
 
         function spawnHeart() {
             const heart = document.createElement('div');
@@ -347,7 +355,7 @@
             if(id === 'letter') startTyping();
         }
 
-        const letterText = `Oye Supu,\n\nSach bolu toh tu thodi pagal hai, par meri favorite wali.\n\nTere saath kalesh karne me jo maza aata hai na, woh duniya ke kisi sukoon me nahi hai.\n\nTu jaisi hai, bilkul perfect hai. (Except your fry-stealing habits).\n\nBas aise hi mere saath rehna, hamesha.\n\n- Tera Anshul`;
+        const letterText = `I love uuuu so muchhhhh me tere bina reh n skta me mnta hun mne kaafi jhuth bole tujhe hurt kara par mne jo kara me chahta tha tu khush hojaye aur mere close aaye. Garvita se v mne tere liye pucha tha toh ki me tujhe khush kr paun coz me bs tujhe khush dekhna chahta hun. Me kbhi kuj n esa krunga jisse tujhe hurt ho. Mrsaath ek new journey start kroge? I love u more then this world.\n\n~ Swaroop Sran ~`;
 
         function startTyping() {
             const el = document.getElementById('typeContent');
@@ -359,7 +367,7 @@
                     const char = letterText.charAt(i);
                     el.innerHTML += char === '\n' ? '<br>' : char;
                     i++;
-                    setTimeout(type, 50);
+                    setTimeout(type, 35);
                 } else {
                     document.getElementById('letterNext').style.display = 'block';
                     el.dataset.typed = "true";
@@ -370,23 +378,15 @@
 
         function dodge() {
             const btn = document.getElementById('noBtn');
-            const container = btn.closest('.container');
-            const rect = container.getBoundingClientRect();
-            
-            // Constrain movement within the viewport but near the container
             const padding = 20;
             const maxX = window.innerWidth - btn.offsetWidth - padding;
             const maxY = window.innerHeight - btn.offsetHeight - padding;
-            
             const newX = Math.max(padding, Math.random() * maxX);
             const newY = Math.max(padding, Math.random() * maxY);
-            
             btn.style.position = 'fixed';
             btn.style.left = newX + 'px';
             btn.style.top = newY + 'px';
             btn.style.zIndex = '1000';
-            
-            // Make "Yes" grow
             const yesBtn = document.getElementById('yesBtn');
             const scale = parseFloat(yesBtn.style.transform.replace('scale(', '')) || 1;
             yesBtn.style.transform = `scale(${Math.min(scale + 0.1, 2)})`;
