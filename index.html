@@ -25,6 +25,7 @@
             align-items: center;
             overflow: hidden;
             background: radial-gradient(circle at center, #3d001d 0%, #0f0109 100%);
+            touch-action: manipulation;
         }
 
         /* Animated Sparkles */
@@ -85,14 +86,14 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary);
             margin-bottom: 12px;
             line-height: 1.2;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.5;
             color: #333;
             margin-bottom: 20px;
@@ -103,7 +104,6 @@
             font-weight: 600;
         }
 
-        /* Responsive Buttons */
         .btn {
             padding: 12px 30px;
             border: none;
@@ -125,7 +125,6 @@
             box-shadow: 0 10px 20px rgba(255,77,109,0.4);
         }
 
-        /* Letter Styling */
         .letter-box {
             background: #fff;
             padding: 20px;
@@ -151,25 +150,27 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Media Frame */
         .gif-frame {
             width: 100%;
-            max-height: 200px;
+            height: 200px; /* Fixed height for consistency */
             border-radius: 20px;
             margin-bottom: 15px;
             overflow: hidden;
             border: 3px solid #fff;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background: #fff; /* White background to match the GIFs */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .gif-frame img { 
             display: block; 
-            width: 100%; 
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%; 
+            max-height: 100%;
+            object-fit: contain; /* CRITICAL FIX: Ensures GIF is not cropped */
         }
 
-        /* Status Bar */
         .status-bar {
             display: flex;
             gap: 5px;
@@ -213,20 +214,19 @@
             width: 100%;
         }
 
-        /* Tablet/Desktop tweaks */
         @media (min-width: 768px) {
-            h1 { font-size: 2.6rem; }
+            h1 { font-size: 2.2rem; }
             p { font-size: 1.1rem; }
             .btn { font-size: 1rem; padding: 15px 40px; }
             .letter-box { font-size: 1.1rem; min-height: 280px; }
-            .gif-frame { max-height: 250px; }
+            .gif-frame { height: 260px; }
         }
     </style>
 </head>
 
-<body>
+<body onclick="ensureMusic()">
 
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
@@ -235,7 +235,7 @@
     <!-- Screen 1: Intro -->
     <div class="container active" id="intro">
         <div class="gif-frame">
-            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXFsZWYwM3lwOXByODRweTN5ZDRocmZsdDhhMWowbWl1MWxxZHBxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Cute Intro">
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXFsZWYwM3lwOXByODRweTN5ZDRocmZsdDhhMWowbWl1MWxxZHBxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Intro">
         </div>
         <h1>Suno ji, supuuu! 😌</h1>
         <p>Sidha point pr aana possible n h toh mne tere liye ek gift bnaya h. <br><span class="highlight">Skip krne ki sochna mt!</span></p>
@@ -246,29 +246,29 @@
     <div class="container" id="tease1">
         <div class="status-bar"><div class="segment filled"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div></div>
         <div class="gif-frame">
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTY4MWRzZnIxMnZ1Z3VlNnZ2NmhsNnh5d3BiYWNsbHNreng1aXdjOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yc2pHdAoxVOrJ2m5Ha/giphy.gif" alt="Cute Tease">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTY4MWRzZnIxMnZ1Z3VlNnZ2NmhsNnh5d3BiYWNsbHNreng1aXdjOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yc2pHdAoxVOrJ2m5Ha/giphy.gif" alt="Cookies">
         </div>
         <h1>Khass Cookies 🍪</h1>
         <p>Yaad h tere hath ki cookies khane ke liye tere mumma teri chutti krate h... <span class="highlight">kuj toh khass hoga unme!</span> Mujhe v khani h kbhi, apne haatho se khilaogi?</p>
         <button class="btn" onclick="nextScreen('tease2')">Next →</button>
     </div>
 
-    <!-- Screen 3: Kalesh -->
+    <!-- Screen 3: Gussa -->
     <div class="container" id="tease2">
         <div class="status-bar"><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div><div class="segment"></div></div>
         <div class="gif-frame">
-            <img src="https://c.tenor.com/7S-oat-3j_YAAAAC/tenor.gif" alt="Angry Cute">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJ1MmdhazM2MDB4MjNmMGV3NTZhOG10ZTY3MHFwaDE0ODNrYTMzcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4asRlBKdJaPeBahjcL/giphy.gif" alt="Cute Gussa">
         </div>
         <h1>Cute Gussa 😤</h1>
         <p>Maana ki tu thoda kalesh karti hai, but honestly? <span class="highlight">Manta hun</span> tera gussa handle karna mera favorite kaam hai. Bina kalesh ke maza hi nahi aata!</p>
         <button class="btn" onclick="nextScreen('tease3')">Hehe, Next!</button>
     </div>
 
-    <!-- Screen 4: Food -->
+    <!-- Screen 4: Health -->
     <div class="container" id="tease3">
         <div class="status-bar"><div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div></div>
         <div class="gif-frame">
-            <img src="https://c.tenor.com/2X88v5zK19QAAAAC/tenor.gif" alt="Foodie">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWtrenEzeXR1ZG9tbGI3Zmxra2I3djFvczY3Z2k2OGFmNHgxOGUzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3PtzgNmZ0t2Nd7aOvj/giphy.gif" alt="Health First">
         </div>
         <h1>Health First 🍕</h1>
         <p>Bas ek req h... <span class="highlight">khati piti rha kr!</span> Ptla hone pr dhyn mt dena, tu jaisi hai waisi hi best lagti hai. Khana hi sukoon hai!</p>
@@ -278,7 +278,7 @@
     <!-- Screen 5: Letter -->
     <div class="container" id="letter">
         <div class="gif-frame">
-            <img src="https://media.tenor.com/Fw59P9m9zY8AAAAC/dudu-cute-smile-photo.gif" alt="Cute Smile">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NnBvcGh1OGxnNW9zNnlmdjltM2h4MmRjejM5bjVhZjlhd2p0ZjB6byZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/LZbgcJylZ0qTFc1d9s/giphy.gif" alt="Mere Dil Se">
         </div>
         <h1>Mere Dil Se...</h1>
         <div class="letter-box">
@@ -290,7 +290,7 @@
     <!-- Screen 6: Proposal -->
     <div class="container" id="proposal">
         <div class="gif-frame">
-            <img src="https://c.tenor.com/n1v6Uu-S03wAAAAC/tenor.gif" alt="Proposal">
+            <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NnBvcGh1OGxnNW9zNnlmdjltM2h4MmRjejM5bjVhZjlhd2p0ZjB6byZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/wDYSVNy6PWhAShcMZz/giphy.gif" alt="Proposal Question">
         </div>
         <h1>The Big Question!</h1>
         <p>I love u more then this world. <br>I promise to never hurt you again. <br><br><span class="highlight">Will you start this new journey with me, Supu?</span></p>
@@ -300,11 +300,11 @@
         </div>
     </div>
 
-    <!-- Screen 7: Success -->
+    <!-- Final Screen -->
     <div class="container" id="success">
         <h1>I Love Youuu! 😌❤️</h1>
         <div class="gif-frame">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Yyb2p0Z3Eyd2R5Z3QyeXN5eXN5eXN5eXN5eXN5eXN5eXN5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="Success Cat">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Yyb2p0Z3Eyd2R5Z3QyeXN5eXN5eXN5eXN5eXN5eXN5eXN5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/MDJ9IbxxvDUQM/giphy.gif" alt="Success">
         </div>
         <p>Hamesha mere saath rehna. <br><span class="highlight">~ Swaroop Sran ~</span></p>
     </div>
@@ -313,6 +313,7 @@
 
     <script>
         const audio = document.getElementById('bgMusic');
+        let musicStarted = false;
 
         function initBackground() {
             const container = document.getElementById('stars');
@@ -330,10 +331,27 @@
         }
         initBackground();
 
+        function ensureMusic() {
+            if (musicStarted && audio.paused) {
+                audio.play().catch(() => {});
+            }
+        }
+
         function startApp() {
-            // Unmute/Play audio on first user interaction (standard mobile policy)
-            audio.play().catch(e => console.log("Audio play failed:", e));
+            audio.play().then(() => {
+                musicStarted = true;
+            }).catch(e => {
+                musicStarted = true;
+            });
             nextScreen('tease1');
+        }
+
+        function nextScreen(id) {
+            ensureMusic();
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+            const next = document.getElementById(id);
+            next.classList.add('active');
+            if(id === 'letter') startTyping();
         }
 
         function spawnHeart() {
@@ -347,13 +365,6 @@
             setTimeout(() => heart.remove(), 5000);
         }
         setInterval(spawnHeart, 450);
-
-        function nextScreen(id) {
-            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
-            const next = document.getElementById(id);
-            next.classList.add('active');
-            if(id === 'letter') startTyping();
-        }
 
         const letterText = `I love uuuu so muchhhhh me tere bina reh n skta me mnta hun mne kaafi jhuth bole tujhe hurt kara par mne jo kara me chahta tha tu khush hojaye aur mere close aaye. Garvita se v mne tere liye pucha tha toh ki me tujhe khush kr paun coz me bs tujhe khush dekhna chahta hun. Me kbhi kuj n esa krunga jisse tujhe hurt ho. Mrsaath ek new journey start kroge? I love u more then this world.\n\n~ Swaroop Sran ~`;
 
@@ -377,6 +388,7 @@
         }
 
         function dodge() {
+            ensureMusic();
             const btn = document.getElementById('noBtn');
             const padding = 20;
             const maxX = window.innerWidth - btn.offsetWidth - padding;
@@ -393,6 +405,7 @@
         }
 
         function celebrate() {
+            ensureMusic();
             nextScreen('success');
             for(let i=0; i<50; i++) {
                 setTimeout(spawnHeart, i * 40);
